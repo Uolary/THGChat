@@ -1,0 +1,59 @@
+.wrapAuth {
+  border: 1px solid #32ff00;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 40px;
+
+  .title {
+    margin: 0 0 25px;
+  }
+
+  .form {
+    margin: 0 0 15px;
+
+    label {
+      display: block;
+    }
+
+    .symbol {
+      margin-right: 5px;
+    }
+
+    input {
+      margin: 10px 0 15px 0;
+      background: inherit;
+      outline: none;
+      border: none;
+      width: 92%;
+      color: #32ff00;
+      font-family: "VT323", monospace;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+  }
+
+  .btn {
+    background: inherit;
+    border: none;
+    color: #32ff00;
+    font-family: "VT323", monospace;
+    font-size: 18px;
+    line-height: 1.2;
+    padding: 0;
+    cursor: pointer;
+    text-shadow: 0 0 10px #c8c8c8;
+    margin-top: 10px;
+
+    &.option {
+      margin-top: 0;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}

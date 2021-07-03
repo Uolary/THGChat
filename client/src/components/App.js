@@ -4,6 +4,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { Authorization } from './Authorization';
 
 const PrivateRoute = ({children, ...rest}) => {
   const auth = false;
@@ -29,12 +30,10 @@ function App() {
       <Router>
         <Switch>
           <Route path='/authorization'>
-            <div>
-              AUTH
-            </div>
+            <Authorization />
           </Route>
           <Route path='error'>
-            ERRPOR
+            ERROR
           </Route>
           <PrivateRoute path='/'>
             HOME
