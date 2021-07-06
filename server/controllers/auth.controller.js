@@ -62,7 +62,7 @@ const signin = (req, res) => {
 
     const token = jwt.sign(
       {
-        id: user.id
+        id: user.id,
       },
       config.secret,
       {
