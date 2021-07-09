@@ -6,10 +6,12 @@ const User = db.user;
 const RefreshToken = db.refreshToken;
 
 const signup = (req, res) => {
+  console.log('req', req.body);
+  
   const user = new User({
     username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    bio: req.body.bio,
+    password: bcrypt.hashSync(req.body.password, 8),
   });
 
   user.save((err, user) => {
@@ -77,7 +79,6 @@ const signin = async (req, res) => {
       return res.status(200).send({
         id: user._id,
         username: user.username,
-        email: user.email,
         accessToken: token,
         refreshToken: refreshToken,
       });

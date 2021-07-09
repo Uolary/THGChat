@@ -1,5 +1,5 @@
 module.exports = {
   secret: 'qwerty',
-  jwtExpiration: 60,
-  jwtRefreshExpired: 300,
+  jwtExpiration: 86400,
+  jwtRefreshExpired: 5184000,
 };
