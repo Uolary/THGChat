@@ -5,14 +5,21 @@ const dbConfig = require('./config/db.config');
 const db = require('./models/index');
 
 const PORT = process.env.PORT || 3002;
+const allowlist = ['http://localhost:3002', 'http://localhost:3000'];
 
-const corsOptions = {
-  origin: 'http://localhost:3002',
-};
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (allowlist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+}
 
 const app = express();
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptionsDelegate));
 
 app.use(bodyParser.json());
 
