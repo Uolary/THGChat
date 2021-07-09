@@ -6,8 +6,6 @@ const User = db.user;
 const RefreshToken = db.refreshToken;
 
 const signup = (req, res) => {
-  console.log('req', req.body);
-  
   const user = new User({
     username: req.body.username,
     bio: req.body.bio,

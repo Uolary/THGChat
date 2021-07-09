@@ -1,4 +1,8 @@
 import { useCallback, useState } from 'react';
+import {
+  Redirect,
+} from 'react-router-dom';
+import AuthService from '../../api/auth';
 import styles from './styles.module.scss';
 
 const initialRegisterInfo = {
@@ -22,6 +26,7 @@ const initialRegisterInfo = {
 
 export const SignUp = () => {
   const [userInfo, setUserInfo] = useState(initialRegisterInfo);
+  const [registeredUser, setRegisteredUser] = useState({});
 
   const setClassName = useCallback((field) => {
     return !userInfo[field].isValid ? styles.invalid : ''
@@ -47,18 +52,36 @@ export const SignUp = () => {
     }))
   };
 
-  const submitHandler = useCallback((e) => {
+  const checkValidAllField = (field) => field.isValid;
+
+  const submitHandler = useCallback(async (e) => {
     e.preventDefault();
 
-    if (!userInfo.nickname.length || !userInfo.nickname.trim()) {
+    if (!userInfo.nickname.value.length || !userInfo.nickname.value.trim()) {
       changeValidUserField('nickname');
     }
 
-    if (userInfo.password !== userInfo.repeatedPassword) {
+    if (userInfo.password.value !== userInfo.repeatedPassword.value || !userInfo.password.value.length) {
       changeValidUserField('password');
       changeValidUserField('repeatedPassword');
     }
+
+    if (Object.values(userInfo).every(checkValidAllField)) {
+      const data = await AuthService.register(
+        userInfo.nickname.value,
+        userInfo.password.value,
+        userInfo.bio.value,
+      );
+
+      if (data) {
+        setRegisteredUser(data);
+      }
+    }
   }, [userInfo]);
+
+  if (registeredUser.id) {
+    return <Redirect to={`/${registeredUser.id}`} />
+  }
 
   return (
     <>

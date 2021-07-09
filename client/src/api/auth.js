@@ -28,7 +28,11 @@ class AuthService {
       username,
       password,
       bio,
-    });
+    }).then((response) => response.data)
+      .then(() => this.login(username, password))
+      .catch((err) => {
+        console.error(`Register error:`, err);
+      });
   }
 
   getUserData() {

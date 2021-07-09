@@ -5,6 +5,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import { Authorization } from './Authorization';
+import { Main } from './Main';
 
 const PrivateRoute = ({children, ...rest}) => {
   const auth = false;
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path='error'>
             ERROR
+          </Route>
+          <Route path='/:id'>
+            <Main />
           </Route>
           <PrivateRoute path='/'>
             HOME
