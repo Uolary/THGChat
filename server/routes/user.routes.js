@@ -10,5 +10,6 @@ module.exports = (app) => {
     next();
   });
 
+  app.get('/api/user/info', [verifyToken], controller.userInfo);
   app.get('/api/user/chats', [verifyToken], controller.userChats);
 };
