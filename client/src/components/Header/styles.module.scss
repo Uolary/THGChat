@@ -1,0 +1,12 @@
+.header {
+  border-bottom: 1px solid;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+
+  .user {
+    h3 {
+      margin: 0;
+    }
+  }
+}

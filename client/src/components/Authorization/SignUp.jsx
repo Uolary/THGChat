@@ -75,7 +75,6 @@ export const SignUp = () => {
       );
 
       if (data) {
-        console.log('data');
         setRegisteredUser(data);
       } else {
         console.log('error');
