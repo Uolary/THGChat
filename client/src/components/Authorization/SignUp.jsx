@@ -27,6 +27,7 @@ const initialRegisterInfo = {
 export const SignUp = () => {
   const [userInfo, setUserInfo] = useState(initialRegisterInfo);
   const [registeredUser, setRegisteredUser] = useState({});
+  const [isError, setIsError] = useState(false);
 
   const setClassName = useCallback((field) => {
     return !userInfo[field].isValid ? styles.invalid : ''
@@ -74,13 +75,21 @@ export const SignUp = () => {
       );
 
       if (data) {
+        console.log('data');
         setRegisteredUser(data);
+      } else {
+        console.log('error');
+        setIsError(true);
       }
     }
   }, [userInfo]);
 
   if (registeredUser.id) {
     return <Redirect to={`/${registeredUser.id}`} />
+  }
+
+  if (isError) {
+    return <Redirect to={`/error`} />
   }
 
   return (

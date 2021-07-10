@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { Authorization } from './Authorization';
 import { Main } from './Main';
+import { Error } from './Error';
 
 const PrivateRoute = ({children, ...rest}) => {
   const auth = false;
@@ -33,8 +34,8 @@ function App() {
           <Route path='/authorization'>
             <Authorization />
           </Route>
-          <Route path='error'>
-            ERROR
+          <Route path='/error'>
+            <Error />
           </Route>
           <Route path='/:id'>
             <Main />
