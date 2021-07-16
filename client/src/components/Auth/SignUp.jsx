@@ -84,7 +84,7 @@ export const SignUp = () => {
   }, [userInfo]);
 
   if (registeredUser.id) {
-    return <Redirect to={`/${registeredUser.id}`} />
+    return <Redirect to={`/home/${registeredUser.id}`} />
   }
 
   if (isError) {

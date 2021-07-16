@@ -6,7 +6,7 @@ import { auth } from '../../const/components';
 import { SignIn } from './SignIn';
 import { Title } from '../Title';
 
-export const Authorization = () => {
+export const Auth = () => {
   const [active, setActive] = useState();
 
   return (
