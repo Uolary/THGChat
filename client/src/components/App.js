@@ -1,12 +1,13 @@
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Redirect,
   Route,
   Switch,
 } from 'react-router-dom';
-import { Authorization } from './Authorization';
+import { Auth } from './Auth';
 import { Main } from './Main';
 import { Error } from './Error';
+import { Page404 } from './404';
 
 const PrivateRoute = ({children, ...rest}) => {
   const auth = false;
@@ -18,7 +19,7 @@ const PrivateRoute = ({children, ...rest}) => {
         auth ? (
           children
         ) : (
-          <Redirect to='/authorization' />
+          <Redirect to='/auth' />
         )
       )}
     >
@@ -31,18 +32,21 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path='/authorization'>
-            <Authorization />
+          <Route path='/auth'>
+            <Auth />
           </Route>
           <Route path='/error'>
             <Error />
           </Route>
-          <Route path='/:id'>
+          <Route path='/home/:id'>
             <Main />
           </Route>
-          <PrivateRoute path='/'>
+          <PrivateRoute exact path='/'>
             HOME
           </PrivateRoute>
+          <Route>
+            <Page404 />
+          </Route>
         </Switch>
       </Router>
     </div>
