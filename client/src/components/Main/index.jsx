@@ -2,6 +2,8 @@ import { Header } from '../Header';
 import { useEffect, useState } from 'react';
 import UserService from '../../api/user';
 import { Redirect } from 'react-router-dom';
+import { Rooms } from '../Rooms';
+import styles from './styles.module.scss';
 
 export const Main = () => {
   const [user, setUser] = useState();
@@ -28,11 +30,14 @@ export const Main = () => {
   }
 
   return (
-    <div>
+    <div className={styles.main}>
       <Header
         username={user.username}
         bio={user.bio}
       />
+      <div>
+        <Rooms />
+      </div>
     </div>
   )
 };
