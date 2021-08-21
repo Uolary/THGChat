@@ -10,6 +10,12 @@ const userChats = (req, res) => {
 const userInfo = (req, res) => {
   let userId = req.headers['id'];
 
+  if (!userId) {
+    return res.status(400).json({
+      message: 'Missing user ID',
+    });
+  }
+
   User.findOne({
     _id: userId
   }).exec((err, user) => {
